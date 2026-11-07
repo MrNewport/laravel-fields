@@ -1,0 +1,9 @@
+/vendor export-ignore
+/node_modules export-ignore
+/.phpunit.cache export-ignore
+/.github export-ignore
+/tests export-ignore
+/benchmarks export-ignore
+/tests/Browser/artifacts export-ignore
+/test-results export-ignore
+/playwright-report export-ignore

@@ -1,0 +1,4 @@
+{
+    "preset": "laravel",
+    "exclude": ["vendor", "node_modules", "tests/Browser/artifacts"]
+}

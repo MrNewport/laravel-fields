@@ -1,0 +1,66 @@
+{
+    "name": "mrnewport/laravel-fields",
+    "description": "Immutable field schemas, server validation and accessible Tailwind forms for Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MrNewport"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/contracts": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0",
+        "illuminate/validation": "^12.0 || ^13.0",
+        "illuminate/view": "^12.0 || ^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "phpunit/phpunit": "^11.5",
+        "filament/forms": "^5.0",
+        "mrnewport/laravel-docsign": "^2.0",
+        "laravel/pint": "^1.24",
+        "larastan/larastan": "^3.0"
+    },
+    "suggest": {
+        "filament/forms": "^5.0 for the optional Filament schema adapter",
+        "mrnewport/laravel-docsign": "^2.0 for PDF export through the existing renderer contract"
+    },
+    "autoload": {
+        "psr-4": {
+            "MrNewport\\LaravelFields\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MrNewport\\LaravelFields\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MrNewport\\LaravelFields\\FieldsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check": [
+            "@format:check",
+            "@analyse",
+            "@test"
+        ],
+        "format": "pint",
+        "format:check": "pint --test",
+        "analyse": "phpstan analyse --memory-limit=512M"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@mrnewport/laravel-fields",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i resources/css/fields.css -o dist/fields.css --minify",
+    "test:browser": "playwright test tests/Browser/fields.spec.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.3.5",
+    "@tailwindcss/cli": "^4.3.5",
+    "@playwright/test": "^1.56",
+    "@axe-core/playwright": "^4.10"
+  }
+}

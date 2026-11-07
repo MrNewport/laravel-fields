@@ -1,0 +1,10 @@
+/vendor/
+/node_modules/
+/.phpunit.cache/
+/coverage/
+.DS_Store
+/tests/Browser/artifacts/
+/test-results/
+/playwright-report/
+
+/composer.lock
