@@ -22,6 +22,8 @@ $schema = Schema::make([
     Field::select('priority')->label('Priority')->options(['normal' => 'Normal', 'high' => 'High'])->group('Request'),
     Field::date('date')->label('Date')->group('Request'),
     Field::checkbox('active')->label('Active')->required()->group('Request'),
+    Field::text('reference')->label('Reference')->readOnly()->default('REF-17')->group('Request'),
+    Field::display('status')->label('Account status')->default('Ready')->group('Request'),
 ]);
 $owner = new class extends Component implements HasSchemas
 {

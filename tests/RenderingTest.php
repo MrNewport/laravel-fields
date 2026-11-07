@@ -106,4 +106,27 @@ final class RenderingTest extends TestCase
         ])->render();
         self::assertStringContainsString('1.0', $report);
     }
+
+    public function test_readonly_and_display_values_have_valid_accessible_group_names_without_naming_paragraphs(): void
+    {
+        $schema = Schema::make([
+            Field::text('reference')->label('Reference')->readOnly()->help('Assigned by the application.'),
+            Field::display('status')->label('Account status'),
+        ]);
+        $html = $schema->render(['reference' => 'REF-17', 'status' => '<b>Ready</b>'], [], 'review')->render();
+        $document = new DOMDocument;
+        @$document->loadHTML($html);
+        $xpath = new DOMXPath($document);
+        foreach (['reference' => 'Reference', 'status' => 'Account status'] as $name => $label) {
+            $group = $xpath->query('//div[@role="group"][@aria-labelledby="review-'.$name.'-label"]');
+            self::assertSame(1, $group->length);
+            self::assertSame($label, trim($xpath->query('//*[@id="review-'.$name.'-label"]')->item(0)->textContent));
+            self::assertSame(1, $xpath->query('//div[@role="group"]/p[@id="review-'.$name.'"]')->length);
+        }
+        self::assertSame(0, $xpath->query('//p[@aria-labelledby or @aria-label]')->length);
+        self::assertStringContainsString('whitespace-pre-wrap break-words text-sm text-slate-700 dark:text-slate-300', $html);
+        self::assertStringContainsString('&lt;b&gt;Ready&lt;/b&gt;', $html);
+        self::assertStringNotContainsString('<b>Ready</b>', $html);
+        self::assertSame([], $schema->validate(['reference' => 'forged', 'status' => 'forged']));
+    }
 }

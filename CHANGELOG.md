@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 — 2026-11-06
+
+- Give read-only and display values a named group containing a plain paragraph, using valid ARIA semantics while preserving value IDs, labels, escaping and visual classes.
+- Exercise both presentations in DOM regressions and the cross-browser accessibility fixture, including prohibited paragraph naming checks.
+
 ## 1.0.0 — 2026-11-06
 
 - Bound collection validation work and preserve complete-form validation semantics in Filament.

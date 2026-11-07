@@ -50,7 +50,9 @@
         @endif
 
         @if ($field->type === \MrNewport\LaravelFields\Type::Display || $field->isReadOnly())
-            <p id="{{ $id }}" aria-labelledby="{{ $id }}-label" class="whitespace-pre-wrap break-words text-sm text-slate-700 dark:text-slate-300">{{ $textValue }}</p>
+            <div role="group" aria-labelledby="{{ $id }}-label">
+                <p id="{{ $id }}" class="whitespace-pre-wrap break-words text-sm text-slate-700 dark:text-slate-300">{{ $textValue }}</p>
+            </div>
         @elseif (in_array($field->type, [\MrNewport\LaravelFields\Type::Textarea, \MrNewport\LaravelFields\Type::Json], true))
             <textarea rows="4" {{ $attributes }}>{{ $textValue }}</textarea>
         @elseif (in_array($field->type, [\MrNewport\LaravelFields\Type::Select, \MrNewport\LaravelFields\Type::MultiSelect], true))

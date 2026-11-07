@@ -207,7 +207,8 @@ final class EdgeCaseTest extends TestCase
         $xpath = new \DOMXPath($document);
         self::assertSame(0, $xpath->query('//label[@for="fields-choice"]|//label[@for="fields-summary"]')->length);
         self::assertSame(1, $xpath->query('//*[@role="radiogroup"][@aria-labelledby="fields-choice-label"][@aria-required="true"]')->length);
-        self::assertSame(1, $xpath->query('//p[@aria-labelledby="fields-summary-label"]')->length);
+        self::assertSame(1, $xpath->query('//div[@role="group"][@aria-labelledby="fields-summary-label"]/p[@id="fields-summary"]')->length);
+        self::assertSame(0, $xpath->query('//p[@aria-labelledby]')->length);
     }
 
     public function test_literal_dotted_input_keys_cannot_overwrite_registered_nested_values(): void

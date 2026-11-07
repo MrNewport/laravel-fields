@@ -9,6 +9,9 @@ for (const colorScheme of ['light', 'dark']) {
         await expect(page.getByRole('textbox', { name: 'Title', exact: true })).toHaveValue('');
         await page.getByRole('textbox', { name: 'Title', exact: true }).fill('A request');
         await expect(page.getByLabel('Date', { exact: true })).toHaveValue('0001-01-01');
+        await expect(page.getByRole('group', { name: 'Reference', exact: true })).toHaveText('REF-17');
+        await expect(page.getByRole('group', { name: 'Account status', exact: true })).toHaveText('Ready');
+        await expect(page.locator('p[aria-labelledby], p[aria-label]')).toHaveCount(0);
         await expect(page.getByLabel('Active', { exact: true })).not.toHaveAttribute('required');
         await expect(page.getByLabel('Enabled', { exact: true })).not.toHaveAttribute('required');
         await page.getByRole('button', { name: 'Submit preference', exact: true }).click();
@@ -39,6 +42,7 @@ for (const colorScheme of ['light', 'dark']) {
         expect(placeholderContrast).toBeGreaterThanOrEqual(4.5);
         const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
         expect(accessibility.violations).toEqual([]);
+        expect(accessibility.incomplete.filter(result => result.id === 'aria-prohibited-attr')).toEqual([]);
         await page.getByRole('textbox', { name: 'Title', exact: true }).focus();
         await page.keyboard.press('Tab');
         await expect(page.getByLabel('Priority', { exact: true })).toBeFocused();
