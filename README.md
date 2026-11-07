@@ -2,6 +2,8 @@
 
 Define a form once in trusted PHP and use it for Laravel validation, accessible Blade controls, Filament 5 components, reviewed CSV exchange and PDF reports. Definitions are immutable; values and persistence stay in your application.
 
+**[Interactive workshop](https://matthewnewport.com/packages/laravel-fields/lab)** — Try guided examples in your browser.
+
 ```php
 use MrNewport\LaravelFields\{Field, Schema};
 
